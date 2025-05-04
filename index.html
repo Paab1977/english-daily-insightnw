@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English Daily Insight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #124612;
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #F8F8F0;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      color: #124612;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    button {
+      background-color: #F8F8F0;
+      color: #124612;
+      border: 2px solid #124612;
+      padding: 10px 20px;
+      margin: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #e5e5d6;
+    }
+    #text-area {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #124612;
+      line-height: 1.6;
+    }
+    .tooltip {
+      position: relative;
+      cursor: help;
+      border-bottom: 1px dotted #124612;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 280px;
+      background-color: #F8F8F0;
+      color: #124612;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px;
+      position: absolute;
+      z-index: 1;
+      bottom: 130%;
+      left: 50%;
+      margin-left: -140px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+    .translate-btn {
+      display: block;
+      margin: 30px auto 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>English Daily Insight</h1>
+  <div class="buttons">
+    <button onclick="loadText('monday')">Monday</button>
+    <button onclick="loadText('tuesday')">Tuesday</button>
+    <button onclick="loadText('wednesday')">Wednesday</button>
+    <button onclick="loadText('thursday')">Thursday</button>
+    <button onclick="loadText('friday')">Friday</button>
+  </div>
+  <div id="text-area">
+    <p>Select a day to read a text.</p>
+  </div>
+  <button class="translate-btn" onclick="toggleTranslation()">Translate</button>
+</div>
+
+<script>
+  const texts = {
+    monday: `<p><strong>Supply Chain:</strong> The <span class="tooltip">logistics<span class="tooltiptext"><b>Definition:</b> the detailed organization of a complex operation.<br><b>Example 1:</b> Efficient logistics reduce delays.<br><b>Example 2:</b> They improve customer satisfaction.</span></span> and planning behind modern supply chains determine whether businesses thrive or fail.</p>`,
+    tuesday: `<p><strong>Methodologies:</strong> Leaders must understand <span class="tooltip">frameworks<span class="tooltiptext"><b>Definition:</b> a structure for solving a problem or organizing work.<br><b>Example 1:</b> Agile is a popular framework.<br><b>Example 2:</b> Frameworks help teams align.</span></span> to drive team performance.</p>`,
+    wednesday: `<p><strong>Leadership:</strong> Emotional intelligence means knowing when to <span class="tooltip">empathize<span class="tooltiptext"><b>Definition:</b> understand and share someone else's feelings.<br><b>Example 1:</b> Good leaders empathize with team struggles.<br><b>Example 2:</b> Empathy builds trust.</span></span> and when to challenge.</p>`,
+    thursday: `<p><strong>Health:</strong> Your mental and spiritual well-being are just as vital as <span class="tooltip">physical<span class="tooltiptext"><b>Definition:</b> relating to the body.<br><b>Example 1:</b> Physical activity boosts mood.<br><b>Example 2:</b> A physical checkup is important annually.</span></span> exercise.</p>`,
+    friday: `<p><strong>World Friday:</strong> Let's explore Japan. With a blend of tradition and <span class="tooltip">innovation<span class="tooltiptext"><b>Definition:</b> the act of creating new ideas or methods.<br><b>Example 1:</b> Innovation drives economic growth.<br><b>Example 2:</b> Japan is a leader in innovation.</span></span>, Japan captivates visitors with temples, cuisine, and cutting-edge tech.</p>`
+  };
+
+  let isTranslated = false;
+
+  function loadText(day) {
+    document.getElementById('text-area').innerHTML = texts[day] || "<p>Coming soon...</p>";
+    isTranslated = false;
+  }
+
+  function toggleTranslation() {
+    if (!isTranslated) {
+      const textContent = document.getElementById('text-area').innerHTML;
+      document.getElementById('text-area').innerHTML = `<p><em>Tradução em breve. (Simulação)</em><br>${textContent}</p>`;
+      isTranslated = true;
+    } else {
+      const original = document.getElementById('text-area').innerHTML.replace(/<p><em>Tradução.*?<\/em><br>/, '');
+      document.getElementById('text-area').innerHTML = original;
+      isTranslated = false;
+    }
+  }
+</script>
+
+</body>
+</html>
